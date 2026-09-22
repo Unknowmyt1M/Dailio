@@ -1,138 +1,142 @@
 [
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_today.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_today.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\layout_item_analytics_breakdown.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\item_analytics_breakdown.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_add.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_add.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_settings.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_settings.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/menu_bottom_nav_menu.xml.flat",
-        "source": "com.dailio.app-main-34:/menu/bottom_nav_menu.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\layout_item_today_subscription.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\item_today_subscription.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/layout_fragment_calendar.xml.flat",
-        "source": "com.dailio.app-main-34:/layout/fragment_calendar.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_launcher.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_launcher.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/layout_item_calendar_day_entry.xml.flat",
-        "source": "com.dailio.app-main-34:/layout/item_calendar_day_entry.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\layout_dialog_edit_product.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\dialog_edit_product.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_settings.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_settings.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\layout_item_calendar_day_entry.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\item_calendar_day_entry.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_pause.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_pause.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\layout_fragment_today.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\fragment_today.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_chevron_left.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_chevron_left.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_today.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_today.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/layout_dialog_edit_product.xml.flat",
-        "source": "com.dailio.app-main-34:/layout/dialog_edit_product.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_delete.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_delete.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/layout_item_calendar_day.xml.flat",
-        "source": "com.dailio.app-main-34:/layout/item_calendar_day.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\layout_activity_main.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/layout_fragment_settings.xml.flat",
-        "source": "com.dailio.app-main-34:/layout/fragment_settings.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_package.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_package.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_launcher.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_launcher.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\layout_fragment_calendar.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\fragment_calendar.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_bg_circle.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/bg_circle.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\layout_dialog_retro_delivery.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\dialog_retro_delivery.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_remove.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_remove.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_bg_badge.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\bg_badge.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_check.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_check.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_bg_card.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\bg_card.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_newspaper.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_newspaper.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_pause.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_pause.xml"
+    },
+    {
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_analytics.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_analytics.xml"
     },
     {
         "merged": "com.dailio.app-debug-32:/layout_item_today_subscription.xml.flat",
         "source": "com.dailio.app-main-34:/layout/item_today_subscription.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/layout_item_product.xml.flat",
-        "source": "com.dailio.app-main-34:/layout/item_product.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\layout_fragment_analytics.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\fragment_analytics.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/layout_item_analytics_breakdown.xml.flat",
-        "source": "com.dailio.app-main-34:/layout/item_analytics_breakdown.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_chevron_left.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_chevron_left.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_package.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_package.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_add.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_add.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_milk.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_milk.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_milk.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_milk.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_delete.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_delete.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_bg_calendar_selected.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\bg_calendar_selected.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/layout_dialog_retro_delivery.xml.flat",
-        "source": "com.dailio.app-main-34:/layout/dialog_retro_delivery.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_check.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_check.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_chevron_right.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_chevron_right.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_chevron_right.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_chevron_right.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_analytics.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_analytics.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_calendar.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_calendar.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_bg_badge.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/bg_badge.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\layout_item_calendar_day.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\item_calendar_day.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_edit.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_edit.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_edit.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_edit.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/layout_fragment_analytics.xml.flat",
-        "source": "com.dailio.app-main-34:/layout/fragment_analytics.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_bg_circle.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\bg_circle.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_bg_calendar_today.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/bg_calendar_today.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_remove.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_remove.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_ic_calendar.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/ic_calendar.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_bg_calendar_today.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\bg_calendar_today.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_bg_calendar_selected.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/bg_calendar_selected.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\drawable_ic_newspaper.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\drawable\\ic_newspaper.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/layout_activity_main.xml.flat",
-        "source": "com.dailio.app-main-34:/layout/activity_main.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\menu_bottom_nav_menu.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\menu\\bottom_nav_menu.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/layout_fragment_today.xml.flat",
-        "source": "com.dailio.app-main-34:/layout/fragment_today.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\layout_fragment_settings.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\fragment_settings.xml"
     },
     {
-        "merged": "com.dailio.app-debug-32:/drawable_bg_card.xml.flat",
-        "source": "com.dailio.app-main-34:/drawable/bg_card.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-debug-32:\\layout_item_product.xml.flat",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\item_product.xml"
     }
 ]

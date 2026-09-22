@@ -75,4 +75,12 @@ object DateUtils {
             String.format(Locale.US, "₹%,.2f", amount)
         }
     }
+
+    fun formatQty(qty: Double, unit: String): String {
+        return if (qty % 1.0 == 0.0) {
+            "${qty.toInt()}$unit"
+        } else {
+            "$qty$unit"
+        }
+    }
 }

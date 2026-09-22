@@ -1,50 +1,54 @@
 [
     {
-        "merged": "com.dailio.app-mergeDebugResources-31:/layout/fragment_today.xml",
-        "source": "com.dailio.app-main-34:/layout/fragment_today.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-mergeDebugResources-31:\\layout\\activity_main.xml",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.dailio.app-mergeDebugResources-31:/layout/dialog_edit_product.xml",
-        "source": "com.dailio.app-main-34:/layout/dialog_edit_product.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-mergeDebugResources-31:\\layout\\fragment_analytics.xml",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\fragment_analytics.xml"
     },
     {
-        "merged": "com.dailio.app-mergeDebugResources-31:/layout/activity_main.xml",
-        "source": "com.dailio.app-main-34:/layout/activity_main.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-mergeDebugResources-31:\\layout\\item_calendar_day_entry.xml",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\item_calendar_day_entry.xml"
     },
     {
-        "merged": "com.dailio.app-mergeDebugResources-31:/layout/fragment_settings.xml",
-        "source": "com.dailio.app-main-34:/layout/fragment_settings.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-mergeDebugResources-31:\\layout\\dialog_edit_product.xml",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\dialog_edit_product.xml"
     },
     {
-        "merged": "com.dailio.app-mergeDebugResources-31:/layout/item_analytics_breakdown.xml",
-        "source": "com.dailio.app-main-34:/layout/item_analytics_breakdown.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-mergeDebugResources-31:\\layout\\fragment_settings.xml",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\fragment_settings.xml"
     },
     {
-        "merged": "com.dailio.app-mergeDebugResources-31:/layout/dialog_retro_delivery.xml",
-        "source": "com.dailio.app-main-34:/layout/dialog_retro_delivery.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-mergeDebugResources-31:\\layout\\item_today_subscription.xml",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\item_today_subscription.xml"
     },
     {
-        "merged": "com.dailio.app-mergeDebugResources-31:/layout/item_calendar_day_entry.xml",
-        "source": "com.dailio.app-main-34:/layout/item_calendar_day_entry.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-mergeDebugResources-31:\\layout\\fragment_today.xml",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\fragment_today.xml"
     },
     {
-        "merged": "com.dailio.app-mergeDebugResources-31:/layout/item_product.xml",
-        "source": "com.dailio.app-main-34:/layout/item_product.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-mergeDebugResources-31:\\layout\\dialog_retro_delivery.xml",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\dialog_retro_delivery.xml"
+    },
+    {
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-mergeDebugResources-31:\\layout\\item_product.xml",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\item_product.xml"
+    },
+    {
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-mergeDebugResources-31:\\layout\\item_calendar_day.xml",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\item_calendar_day.xml"
+    },
+    {
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-mergeDebugResources-31:\\layout\\fragment_calendar.xml",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\fragment_calendar.xml"
     },
     {
         "merged": "com.dailio.app-mergeDebugResources-31:/layout/item_today_subscription.xml",
         "source": "com.dailio.app-main-34:/layout/item_today_subscription.xml"
     },
     {
-        "merged": "com.dailio.app-mergeDebugResources-31:/layout/fragment_calendar.xml",
-        "source": "com.dailio.app-main-34:/layout/fragment_calendar.xml"
-    },
-    {
-        "merged": "com.dailio.app-mergeDebugResources-31:/layout/fragment_analytics.xml",
-        "source": "com.dailio.app-main-34:/layout/fragment_analytics.xml"
-    },
-    {
-        "merged": "com.dailio.app-mergeDebugResources-31:/layout/item_calendar_day.xml",
-        "source": "com.dailio.app-main-34:/layout/item_calendar_day.xml"
+        "merged": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-mergeDebugResources-31:\\layout\\item_analytics_breakdown.xml",
+        "source": "D:\\DevTools\\Config\\.gradle\\daemon\\8.13\\com.dailio.app-main-34:\\layout\\item_analytics_breakdown.xml"
     }
 ]

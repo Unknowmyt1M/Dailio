@@ -15,6 +15,7 @@ import androidx.viewbinding.ViewBindings;
 import com.dailio.app.R;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.chip.ChipGroup;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -27,7 +28,7 @@ public final class ItemTodaySubscriptionBinding implements ViewBinding {
   public final ImageButton btnMinus;
 
   @NonNull
-  public final MaterialButton btnPause;
+  public final MaterialButton btnMissed;
 
   @NonNull
   public final ImageButton btnPlus;
@@ -36,16 +37,13 @@ public final class ItemTodaySubscriptionBinding implements ViewBinding {
   public final MaterialButton btnToggleDeliver;
 
   @NonNull
-  public final View dividerLine;
+  public final ChipGroup chipGroupQty;
 
   @NonNull
   public final ImageView ivIcon;
 
   @NonNull
-  public final LinearLayout qtyControls;
-
-  @NonNull
-  public final LinearLayout statusActions;
+  public final LinearLayout layoutQuantityChips;
 
   @NonNull
   public final TextView tvName;
@@ -60,20 +58,20 @@ public final class ItemTodaySubscriptionBinding implements ViewBinding {
   public final TextView tvStatusBadge;
 
   private ItemTodaySubscriptionBinding(@NonNull MaterialCardView rootView,
-      @NonNull ImageButton btnMinus, @NonNull MaterialButton btnPause, @NonNull ImageButton btnPlus,
-      @NonNull MaterialButton btnToggleDeliver, @NonNull View dividerLine,
-      @NonNull ImageView ivIcon, @NonNull LinearLayout qtyControls,
-      @NonNull LinearLayout statusActions, @NonNull TextView tvName, @NonNull TextView tvPriceRate,
-      @NonNull TextView tvQuantity, @NonNull TextView tvStatusBadge) {
+      @NonNull ImageButton btnMinus, @NonNull MaterialButton btnMissed,
+      @NonNull ImageButton btnPlus, @NonNull MaterialButton btnToggleDeliver,
+      @NonNull ChipGroup chipGroupQty, @NonNull ImageView ivIcon,
+      @NonNull LinearLayout layoutQuantityChips, @NonNull TextView tvName,
+      @NonNull TextView tvPriceRate, @NonNull TextView tvQuantity,
+      @NonNull TextView tvStatusBadge) {
     this.rootView = rootView;
     this.btnMinus = btnMinus;
-    this.btnPause = btnPause;
+    this.btnMissed = btnMissed;
     this.btnPlus = btnPlus;
     this.btnToggleDeliver = btnToggleDeliver;
-    this.dividerLine = dividerLine;
+    this.chipGroupQty = chipGroupQty;
     this.ivIcon = ivIcon;
-    this.qtyControls = qtyControls;
-    this.statusActions = statusActions;
+    this.layoutQuantityChips = layoutQuantityChips;
     this.tvName = tvName;
     this.tvPriceRate = tvPriceRate;
     this.tvQuantity = tvQuantity;
@@ -113,9 +111,9 @@ public final class ItemTodaySubscriptionBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.btn_pause;
-      MaterialButton btnPause = ViewBindings.findChildViewById(rootView, id);
-      if (btnPause == null) {
+      id = R.id.btn_missed;
+      MaterialButton btnMissed = ViewBindings.findChildViewById(rootView, id);
+      if (btnMissed == null) {
         break missingId;
       }
 
@@ -131,9 +129,9 @@ public final class ItemTodaySubscriptionBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.divider_line;
-      View dividerLine = ViewBindings.findChildViewById(rootView, id);
-      if (dividerLine == null) {
+      id = R.id.chip_group_qty;
+      ChipGroup chipGroupQty = ViewBindings.findChildViewById(rootView, id);
+      if (chipGroupQty == null) {
         break missingId;
       }
 
@@ -143,15 +141,9 @@ public final class ItemTodaySubscriptionBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.qty_controls;
-      LinearLayout qtyControls = ViewBindings.findChildViewById(rootView, id);
-      if (qtyControls == null) {
-        break missingId;
-      }
-
-      id = R.id.status_actions;
-      LinearLayout statusActions = ViewBindings.findChildViewById(rootView, id);
-      if (statusActions == null) {
+      id = R.id.layout_quantity_chips;
+      LinearLayout layoutQuantityChips = ViewBindings.findChildViewById(rootView, id);
+      if (layoutQuantityChips == null) {
         break missingId;
       }
 
@@ -179,9 +171,9 @@ public final class ItemTodaySubscriptionBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemTodaySubscriptionBinding((MaterialCardView) rootView, btnMinus, btnPause,
-          btnPlus, btnToggleDeliver, dividerLine, ivIcon, qtyControls, statusActions, tvName,
-          tvPriceRate, tvQuantity, tvStatusBadge);
+      return new ItemTodaySubscriptionBinding((MaterialCardView) rootView, btnMinus, btnMissed,
+          btnPlus, btnToggleDeliver, chipGroupQty, ivIcon, layoutQuantityChips, tvName, tvPriceRate,
+          tvQuantity, tvStatusBadge);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

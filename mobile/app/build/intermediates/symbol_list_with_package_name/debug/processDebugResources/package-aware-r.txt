@@ -3242,8 +3242,8 @@ id btn_edit_product
 id btn_entry_status
 id btn_mark_all_delivered
 id btn_minus
+id btn_missed
 id btn_next_month
-id btn_pause
 id btn_plus
 id btn_prev_month
 id btn_reset_data
@@ -3270,6 +3270,7 @@ id chain
 id chains
 id checkbox
 id checked
+id chip_group_qty
 id chronometer
 id circle_center
 id clear_text
@@ -3314,7 +3315,6 @@ id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
 id disjoint
-id divider_line
 id dot_delivered
 id dot_paused
 id dots_container
@@ -3407,6 +3407,7 @@ id labeled
 id layout
 id layout_actions
 id layout_empty_today
+id layout_quantity_chips
 id layout_selected_day_entries
 id left
 id leftToRight
@@ -3536,7 +3537,6 @@ id pressed
 id progress_circular
 id progress_horizontal
 id progress_item_cost
-id qty_controls
 id radio
 id ratio
 id rb_delivered
@@ -3612,7 +3612,6 @@ id startToEnd
 id startVertical
 id staticLayout
 id staticPostLayout
-id status_actions
 id stop
 id stretch
 id submenuarrow

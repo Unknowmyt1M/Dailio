@@ -43,7 +43,12 @@ class TodayFragment : Fragment() {
     private fun setupRecyclerView() {
         adapter = TodayAdapter(
             onQuantityChanged = { item, newQty ->
-                repository.updateQuantity(item.service, DateUtils.todayKey(), newQty)
+                repository.setDeliveryStatus(
+                    item.service,
+                    DateUtils.todayKey(),
+                    "delivered",
+                    newQty
+                )
                 loadTodayData()
             },
             onToggleDelivered = { item ->
@@ -56,13 +61,13 @@ class TodayFragment : Fragment() {
                 )
                 loadTodayData()
             },
-            onTogglePaused = { item ->
-                val nextStatus = if (item.effectiveStatus == "paused") "delivered" else "paused"
+            onToggleMissed = { item ->
+                val nextStatus = if (item.effectiveStatus == "not_delivered") "delivered" else "not_delivered"
                 repository.setDeliveryStatus(
                     item.service,
                     DateUtils.todayKey(),
                     nextStatus,
-                    item.effectiveQuantity
+                    0.0
                 )
                 loadTodayData()
             }
