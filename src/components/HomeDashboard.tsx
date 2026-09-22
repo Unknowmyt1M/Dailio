@@ -4,7 +4,7 @@ import { calculateMonthlyHisaab, formatCurrency } from '../lib/billing';
 import { dateKey, isDatePaused, getApplicableRate } from '../lib/dates';
 import { format, subDays, eachDayOfInterval } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
-import { Check, X, Zap, ChevronRight, Pause, Layers, ArrowRight, Sun, Moon, CalendarDays, Milk, Newspaper, CheckCircle2 } from 'lucide-react';
+import { Check, Zap, ChevronRight, Pause, Layers, ArrowRight, Sun, Moon, CalendarDays, Milk, Newspaper, CheckCircle2 } from 'lucide-react';
 
 export default function HomeDashboard() {
   const navigate = useNavigate();
@@ -310,11 +310,11 @@ export default function HomeDashboard() {
               </span>
             </div>
 
-            {/* Main 1-Click Button (uses Onboarding Default Quantity) */}
+            {/* Main 1-Click Action Row matching Newspaper */}
             <div className="flex items-center gap-2">
               <button
                 onClick={handleToggleMilkDefault}
-                className={`flex-1 py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-sm ${
+                className={`flex-1 py-3 px-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-sm whitespace-nowrap ${
                   milkRecord?.status === 'delivered'
                     ? 'bg-success text-white shadow-success/25'
                     : 'bg-primary text-white hover:bg-primary-dark shadow-primary/25'
@@ -322,42 +322,43 @@ export default function HomeDashboard() {
               >
                 {milkRecord?.status === 'delivered' ? (
                   <>
-                    <Check size={16} strokeWidth={3} /> {milkRecord.quantity}{milkService.unit} Delivered (Tap to Undo)
+                    <Check size={16} strokeWidth={3} /> {milkRecord.quantity}{milkService.unit} Delivered
                   </>
                 ) : (
                   <>
-                    <Zap size={16} /> Record Milk ({defaultMilkQty}{milkService.unit} Default)
+                    <Check size={16} strokeWidth={2.5} /> Mark Delivered ({defaultMilkQty}{milkService.unit})
                   </>
                 )}
               </button>
+              <button
+                onClick={handleSetMilkMissed}
+                className={`px-4 py-3 rounded-xl text-xs font-bold transition-all active:scale-95 ${
+                  milkRecord?.status === 'not_delivered'
+                    ? 'bg-danger text-white'
+                    : 'bg-surface-alt text-text-secondary hover:bg-danger/10 hover:text-danger'
+                }`}
+              >
+                Missed
+              </button>
+            </div>
 
-              {/* Quick overrides if today's quantity differed */}
-              <div className="flex gap-1">
-                {[0.5, 1, 2].filter(q => q !== defaultMilkQty).slice(0, 2).map(qty => (
+            {/* Quick Quantity Chips */}
+            <div className="flex items-center justify-between pt-1 border-t border-border/40 text-xs">
+              <span className="text-[11px] font-semibold text-text-secondary">Quantity:</span>
+              <div className="flex items-center gap-1.5">
+                {Array.from(new Set([0.5, 1, defaultMilkQty, 2])).sort((a, b) => a - b).map(qty => (
                   <button
                     key={qty}
                     onClick={() => handleSetMilkQty(qty)}
-                    className={`px-2.5 py-3 rounded-xl text-xs font-bold transition-all active:scale-95 ${
+                    className={`px-2.5 py-1 rounded-lg text-xs font-semibold transition-all active:scale-95 ${
                       milkRecord?.status === 'delivered' && milkRecord.quantity === qty
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-surface-alt text-text hover:bg-blue-500/10 hover:text-blue-600'
+                        ? 'bg-primary text-white shadow-xs font-bold'
+                        : 'bg-surface-alt text-text-secondary hover:bg-primary/10 hover:text-primary'
                     }`}
-                    title={`Change to ${qty}${milkService.unit}`}
                   >
                     {qty}{milkService.unit}
                   </button>
                 ))}
-                <button
-                  onClick={handleSetMilkMissed}
-                  className={`px-2.5 py-3 rounded-xl text-xs font-bold transition-all active:scale-95 ${
-                    milkRecord?.status === 'not_delivered'
-                      ? 'bg-danger text-white'
-                      : 'bg-danger/10 text-danger hover:bg-danger/20'
-                  }`}
-                  title="Mark as Missed"
-                >
-                  <X size={14} strokeWidth={2.5} />
-                </button>
               </div>
             </div>
           </div>

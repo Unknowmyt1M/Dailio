@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Theme Palette -->
+    <color name="primary">#818CF8</color>
+    <color name="primary_dark">#6366F1</color>
+    <color name="primary_container">#312E81</color>
+    <color name="on_primary_container">#E0E7FF</color>
+    <color name="secondary">#2DD4BF</color>
+    <color name="secondary_container">#134E4A</color>
+    
+    <color name="background">#0F172A</color>
+    <color name="surface">#1E293B</color>
+    <color name="surface_variant">#334155</color>
+    <color name="text_primary">#F8FAFC</color>
+    <color name="text_secondary">#94A3B8</color>
+    <color name="text_tertiary">#64748B</color>
+    <color name="border">#334155</color>
+    <color name="divider">#1E293B</color>
+
+    <!-- Status Colors -->
+    <color name="status_delivered">#34D399</color>
+    <color name="status_delivered_bg">#064E3B</color>
+    <color name="status_paused">#FBBF24</color>
+    <color name="status_paused_bg">#78350F</color>
+    <color name="status_pending">#64748B</color>
+    <color name="status_pending_bg">#1E293B</color>
+    <color name="status_missed">#F87171</color>
+    <color name="status_missed_bg">#7F1D1D</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>

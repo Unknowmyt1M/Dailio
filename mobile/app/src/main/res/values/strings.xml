@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Dailio</string>
+    <string name="app_tagline">Daily Routine &amp; Subscription Tracker</string>
+    <string name="nav_today">Today</string>
+    <string name="nav_calendar">Calendar</string>
+    <string name="nav_analytics">Analytics</string>
+    <string name="nav_settings">Settings</string>
+</resources>

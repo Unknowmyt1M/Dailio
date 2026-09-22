@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#F8FAFC</color>
+    <color name="black">#000000</color>
+    <color name="border">#E2E8F0</color>
+    <color name="divider">#F1F5F9</color>
+    <color name="on_primary_container">#312E81</color>
+    <color name="primary">#4F46E5</color>
+    <color name="primary_container">#EEF2FF</color>
+    <color name="primary_dark">#3730A3</color>
+    <color name="secondary">#0D9488</color>
+    <color name="secondary_container">#CCFBF1</color>
+    <color name="status_delivered">#10B981</color>
+    <color name="status_delivered_bg">#ECFDF5</color>
+    <color name="status_missed">#EF4444</color>
+    <color name="status_missed_bg">#FEE2E2</color>
+    <color name="status_paused">#F59E0B</color>
+    <color name="status_paused_bg">#FEF3C7</color>
+    <color name="status_pending">#94A3B8</color>
+    <color name="status_pending_bg">#F1F5F9</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#F1F5F9</color>
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="text_tertiary">#94A3B8</color>
+    <color name="white">#FFFFFF</color>
+    <string name="app_name">Dailio</string>
+    <string name="app_tagline">Daily Routine &amp; Subscription Tracker</string>
+    <string name="nav_analytics">Analytics</string>
+    <string name="nav_calendar">Calendar</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_today">Today</string>
+    <style name="Theme.Dailio" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/on_primary_container</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/surface</item>
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+</resources>
