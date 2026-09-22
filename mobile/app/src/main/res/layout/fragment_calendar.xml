@@ -31,6 +31,41 @@
             android:textColor="@color/text_secondary"
             android:textSize="13sp" />
 
+        <!-- Calendar Fast Actions: Bulk Log & Vacation Pause -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_bulk_log"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_marginEnd="6dp"
+                app:cornerRadius="10dp"
+                android:text="⚡ Bulk Log"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textAllCaps="false" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_vacation_pause"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_marginStart="6dp"
+                app:cornerRadius="10dp"
+                android:text="🏖️ Vacation / Pause"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
         <!-- Calendar Card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"

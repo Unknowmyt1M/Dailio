@@ -10,6 +10,10 @@ import com.dailio.app.ui.calendar.CalendarFragment
 import com.dailio.app.ui.settings.SettingsFragment
 import com.dailio.app.ui.today.TodayFragment
 
+import android.content.Intent
+import com.dailio.app.ui.onboarding.OnboardingActivity
+import com.dailio.app.util.Prefs
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -21,6 +25,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val prefs = Prefs(this)
+        if (!prefs.isOnboarded) {
+            startActivity(Intent(this, OnboardingActivity::class.java))
+            finish()
+            return
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -55,5 +67,9 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .commit()
+    }
+
+    fun openCalendarTab() {
+        binding.bottomNavigation.selectedItemId = R.id.nav_calendar
     }
 }

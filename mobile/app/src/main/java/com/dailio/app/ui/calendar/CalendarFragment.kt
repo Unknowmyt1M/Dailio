@@ -11,14 +11,19 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dailio.app.DailioApplication
 import com.dailio.app.R
+import com.dailio.app.databinding.DialogBulkEntryBinding
 import com.dailio.app.databinding.DialogRetroDeliveryBinding
+import com.dailio.app.databinding.DialogVacationPauseBinding
 import com.dailio.app.databinding.FragmentCalendarBinding
 import com.dailio.app.databinding.ItemCalendarDayEntryBinding
 import com.dailio.app.model.DeliveryRecord
+import com.dailio.app.model.PauseRecord
 import com.dailio.app.model.ServiceItem
 import com.dailio.app.util.DateUtils
+import android.widget.Toast
 import java.util.Calendar
 import java.util.Locale
+import java.util.UUID
 
 class CalendarFragment : Fragment() {
 
@@ -94,6 +99,82 @@ class CalendarFragment : Fragment() {
         binding.btnEditDayRetro.setOnClickListener {
             showRetroactiveEditDialog()
         }
+
+        binding.btnBulkLog.setOnClickListener {
+            showBulkLogDialog()
+        }
+
+        binding.btnVacationPause.setOnClickListener {
+            showVacationPauseDialog()
+        }
+    }
+
+    private fun showBulkLogDialog() {
+        val dialogBinding = DialogBulkEntryBinding.inflate(layoutInflater)
+        dialogBinding.etBulkStartDay.setText("1")
+        dialogBinding.etBulkEndDay.setText(selectedDay.toString())
+
+        val daysInMonth = DateUtils.getDaysInMonth(currentYear, currentMonth)
+
+        AlertDialog.Builder(requireContext())
+            .setView(dialogBinding.root)
+            .setPositiveButton("Apply") { _, _ ->
+                val start = dialogBinding.etBulkStartDay.text?.toString()?.toIntOrNull() ?: 1
+                val end = dialogBinding.etBulkEndDay.text?.toString()?.toIntOrNull() ?: selectedDay
+
+                val validStart = start.coerceIn(1, daysInMonth)
+                val validEnd = end.coerceIn(validStart, daysInMonth)
+
+                val status = when (dialogBinding.rgBulkStatus.checkedRadioButtonId) {
+                    dialogBinding.rbBulkMissed.id -> "not_delivered"
+                    dialogBinding.rbBulkPaused.id -> "paused"
+                    else -> "delivered"
+                }
+
+                val startDateKey = DateUtils.formatDateKey(currentYear, currentMonth, validStart)
+                val endDateKey = DateUtils.formatDateKey(currentYear, currentMonth, validEnd)
+
+                repository.bulkUpdateRecords(startDateKey, endDateKey, "all", status, 0.0)
+                renderCalendar()
+                Toast.makeText(requireContext(), "Bulk update applied ($validStart to $validEnd)!", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun showVacationPauseDialog() {
+        val dialogBinding = DialogVacationPauseBinding.inflate(layoutInflater)
+        val daysInMonth = DateUtils.getDaysInMonth(currentYear, currentMonth)
+
+        dialogBinding.etPauseStartDay.setText(selectedDay.toString())
+        dialogBinding.etPauseEndDay.setText((selectedDay + 2).coerceAtMost(daysInMonth).toString())
+
+        AlertDialog.Builder(requireContext())
+            .setView(dialogBinding.root)
+            .setPositiveButton("Schedule Pause") { _, _ ->
+                val start = dialogBinding.etPauseStartDay.text?.toString()?.toIntOrNull() ?: selectedDay
+                val end = dialogBinding.etPauseEndDay.text?.toString()?.toIntOrNull() ?: (selectedDay + 2)
+
+                val validStart = start.coerceIn(1, daysInMonth)
+                val validEnd = end.coerceIn(validStart, daysInMonth)
+                val reason = dialogBinding.etPauseReason.text?.toString()?.trim() ?: "Vacation"
+
+                val startDateKey = DateUtils.formatDateKey(currentYear, currentMonth, validStart)
+                val endDateKey = DateUtils.formatDateKey(currentYear, currentMonth, validEnd)
+
+                val pause = PauseRecord(
+                    id = UUID.randomUUID().toString(),
+                    serviceId = "all",
+                    startDate = startDateKey,
+                    endDate = endDateKey,
+                    reason = reason
+                )
+                repository.savePause(pause)
+                renderCalendar()
+                Toast.makeText(requireContext(), "Deliveries paused for $reason ($validStart to $validEnd)", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 
     private fun renderCalendar() {

@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Title Header -->
+        <!-- Title & Month Switcher Header -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,9 +46,35 @@
 
             </LinearLayout>
 
+            <!-- Month Switcher -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btn_prev_month_analytics"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/bg_badge"
+                    android:src="@drawable/ic_chevron_left"
+                    app:tint="@color/text_primary" />
+
+                <ImageButton
+                    android:id="@+id/btn_next_month_analytics"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_badge"
+                    android:src="@drawable/ic_chevron_right"
+                    app:tint="@color/text_primary" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
-        <!-- Main Hisaab Card -->
+        <!-- Main Hisaab Card: Total Bill | Paid | Due -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,84 +89,219 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="16dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Total Spent This Month"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/tv_total_spent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/primary"
-                    android:textSize="32sp"
-                    android:textStyle="bold"
-                    tools:text="₹1,562.00" />
-
+                <!-- 3-Column Financial Ledger -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:background="@drawable/bg_badge"
-                    android:orientation="horizontal"
-                    android:padding="12dp">
+                    android:padding="12dp"
+                    android:orientation="horizontal">
 
+                    <!-- Total Bill -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Full Month Projected"
+                            android:text="TOTAL BILL"
                             android:textColor="@color/text_secondary"
-                            android:textSize="11sp" />
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_projected_total"
+                            android:id="@+id/tv_total_spent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
+                            android:layout_marginTop="3dp"
                             android:textColor="@color/text_primary"
-                            android:textSize="15sp"
+                            android:textSize="16sp"
                             android:textStyle="bold"
-                            tools:text="₹2,130.00" />
+                            tools:text="₹2,595" />
 
                     </LinearLayout>
 
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="32dp"
+                        android:background="@color/divider" />
+
+                    <!-- Paid -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Delivery Rate"
-                            android:textColor="@color/text_secondary"
-                            android:textSize="11sp" />
+                            android:text="PAID"
+                            android:textColor="@color/status_delivered"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/tv_delivery_rate"
+                            android:id="@+id/tv_total_paid"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
+                            android:layout_marginTop="3dp"
                             android:textColor="@color/status_delivered"
-                            android:textSize="15sp"
+                            android:textSize="16sp"
                             android:textStyle="bold"
-                            tools:text="100%" />
+                            tools:text="₹2,000" />
+
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="32dp"
+                        android:background="@color/divider" />
+
+                    <!-- Due -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="BALANCE DUE"
+                            android:textColor="@color/status_missed"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_balance_due"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:textColor="@color/status_missed"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:text="₹595" />
 
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <!-- Projected & Delivery Rate Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_projected_total"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        tools:text="Full Month Projected: ₹3,120" />
+
+                    <TextView
+                        android:id="@+id/tv_delivery_rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/status_delivered"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:text="100% On Schedule" />
+
+                </LinearLayout>
+
+                <!-- Actions: Record Payment & Share on WhatsApp -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_add_payment"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="44dp"
+                        android:layout_marginEnd="6dp"
+                        app:cornerRadius="12dp"
+                        android:text="+ Record Payment"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="false" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_share_hisaab"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="44dp"
+                        app:cornerRadius="12dp"
+                        android:text="Share WhatsApp"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="false" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Payments History Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/border"
+            app:cardBackgroundColor="@color/surface">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payments Logged"
+                    android:textColor="@color/text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_empty_payments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="No payments recorded yet for this month."
+                    android:textColor="@color/text_muted"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_payments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:nestedScrollingEnabled="false"
+                    tools:listitem="@layout/item_payment" />
 
             </LinearLayout>
 
@@ -201,6 +362,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
             app:strokeWidth="1dp"

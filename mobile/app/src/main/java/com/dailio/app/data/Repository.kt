@@ -4,6 +4,8 @@ import android.content.ContentValues
 import com.dailio.app.model.AnalyticsSummary
 import com.dailio.app.model.DeliveryRecord
 import com.dailio.app.model.ItemBreakdown
+import com.dailio.app.model.PauseRecord
+import com.dailio.app.model.PaymentRecord
 import com.dailio.app.model.ServiceItem
 import com.dailio.app.model.TodayItemUiState
 import com.dailio.app.util.DateUtils
@@ -312,16 +314,275 @@ class Repository(private val dbHelper: DatabaseHelper) {
             } else 100
         } else 100
 
+        // Payments calculation
+        val periodKey = String.format(java.util.Locale.US, "%04d-%02d", year, month + 1)
+        val payments = getPaymentsForPeriod(periodKey)
+        val totalPaid = payments.sumOf { it.amount }
+        val balanceDue = (totalSpent - totalPaid).coerceAtLeast(0.0)
+
         return AnalyticsSummary(
             period = DateUtils.formatMonthYear(year, month),
             totalSpent = totalSpent,
             projectedTotal = projectedTotal,
+            totalPaid = totalPaid,
+            balanceDue = balanceDue,
             deliveryRatePercent = deliveryRatePercent,
             activeDaysCount = currentDay,
             totalDaysInMonth = totalDaysInMonth,
             pausedDaysCount = totalPausedCount,
-            breakdownItems = updatedBreakdowns
+            breakdownItems = updatedBreakdowns,
+            payments = payments
         )
+    }
+
+    // --- PAYMENTS MANAGEMENT ---
+    fun getPaymentsForPeriod(period: String): List<PaymentRecord> {
+        val list = mutableListOf<PaymentRecord>()
+        val db = dbHelper.readableDatabase
+        val cursor = db.query(
+            DatabaseHelper.TABLE_PAYMENTS,
+            null,
+            "${DatabaseHelper.COL_PAYMENT_PERIOD} = ?",
+            arrayOf(period),
+            null,
+            null,
+            "${DatabaseHelper.COL_PAYMENT_DATE} DESC"
+        )
+        cursor.use {
+            while (it.moveToNext()) {
+                val id = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAYMENT_ID))
+                val p = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAYMENT_PERIOD))
+                val amount = it.getDouble(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAYMENT_AMOUNT))
+                val date = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAYMENT_DATE))
+                val method = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAYMENT_METHOD))
+                val note = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAYMENT_NOTE)) ?: ""
+                list.add(PaymentRecord(id, p, amount, date, method, note))
+            }
+        }
+        return list
+    }
+
+    fun savePayment(payment: PaymentRecord) {
+        val db = dbHelper.writableDatabase
+        val values = ContentValues().apply {
+            put(DatabaseHelper.COL_PAYMENT_ID, payment.id)
+            put(DatabaseHelper.COL_PAYMENT_PERIOD, payment.period)
+            put(DatabaseHelper.COL_PAYMENT_AMOUNT, payment.amount)
+            put(DatabaseHelper.COL_PAYMENT_DATE, payment.date)
+            put(DatabaseHelper.COL_PAYMENT_METHOD, payment.method)
+            put(DatabaseHelper.COL_PAYMENT_NOTE, payment.note)
+        }
+        db.insertWithOnConflict(
+            DatabaseHelper.TABLE_PAYMENTS,
+            null,
+            values,
+            android.database.sqlite.SQLiteDatabase.CONFLICT_REPLACE
+        )
+    }
+
+    fun deletePayment(paymentId: String) {
+        val db = dbHelper.writableDatabase
+        db.delete(DatabaseHelper.TABLE_PAYMENTS, "${DatabaseHelper.COL_PAYMENT_ID} = ?", arrayOf(paymentId))
+    }
+
+    // --- PAUSES & VACATION MANAGEMENT ---
+    fun getAllPauses(): List<PauseRecord> {
+        val list = mutableListOf<PauseRecord>()
+        val db = dbHelper.readableDatabase
+        val cursor = db.query(
+            DatabaseHelper.TABLE_PAUSES,
+            null,
+            null,
+            null,
+            null,
+            null,
+            "${DatabaseHelper.COL_PAUSE_START_DATE} DESC"
+        )
+        cursor.use {
+            while (it.moveToNext()) {
+                val id = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAUSE_ID))
+                val serviceId = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAUSE_SERVICE_ID))
+                val start = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAUSE_START_DATE))
+                val end = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAUSE_END_DATE))
+                val reason = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAUSE_REASON)) ?: ""
+                list.add(PauseRecord(id, serviceId, start, end, reason))
+            }
+        }
+        return list
+    }
+
+    fun savePause(pause: PauseRecord) {
+        val db = dbHelper.writableDatabase
+        val values = ContentValues().apply {
+            put(DatabaseHelper.COL_PAUSE_ID, pause.id)
+            put(DatabaseHelper.COL_PAUSE_SERVICE_ID, pause.serviceId)
+            put(DatabaseHelper.COL_PAUSE_START_DATE, pause.startDate)
+            put(DatabaseHelper.COL_PAUSE_END_DATE, pause.endDate)
+            put(DatabaseHelper.COL_PAUSE_REASON, pause.reason)
+        }
+        db.insertWithOnConflict(
+            DatabaseHelper.TABLE_PAUSES,
+            null,
+            values,
+            android.database.sqlite.SQLiteDatabase.CONFLICT_REPLACE
+        )
+
+        // Apply paused status to records in this range
+        val targetServices = if (pause.serviceId == "all") getAllServices() else getAllServices().filter { it.id == pause.serviceId }
+        val startParts = pause.startDate.split("-").map { it.toInt() }
+        val endParts = pause.endDate.split("-").map { it.toInt() }
+
+        val startCal = Calendar.getInstance().apply {
+            set(startParts[0], startParts[1] - 1, startParts[2], 0, 0, 0)
+        }
+        val endCal = Calendar.getInstance().apply {
+            set(endParts[0], endParts[1] - 1, endParts[2], 0, 0, 0)
+        }
+
+        while (!startCal.after(endCal)) {
+            val dateKey = DateUtils.formatDateKey(
+                startCal.get(Calendar.YEAR),
+                startCal.get(Calendar.MONTH),
+                startCal.get(Calendar.DAY_OF_MONTH)
+            )
+            for (service in targetServices) {
+                saveDeliveryRecord(
+                    DeliveryRecord(
+                        id = UUID.randomUUID().toString(),
+                        serviceId = service.id,
+                        date = dateKey,
+                        status = "paused",
+                        quantity = 0.0,
+                        note = if (pause.reason.isEmpty()) "Vacation" else pause.reason
+                    )
+                )
+            }
+            startCal.add(Calendar.DAY_OF_MONTH, 1)
+        }
+    }
+
+    fun deletePause(pauseId: String) {
+        val db = dbHelper.writableDatabase
+        db.delete(DatabaseHelper.TABLE_PAUSES, "${DatabaseHelper.COL_PAUSE_ID} = ?", arrayOf(pauseId))
+    }
+
+    // --- BULK LOGGING ---
+    fun bulkUpdateRecords(startDate: String, endDate: String, targetServiceId: String?, status: String, qty: Double) {
+        val targetServices = if (targetServiceId == null || targetServiceId == "all") {
+            getAllServices()
+        } else {
+            getAllServices().filter { it.id == targetServiceId }
+        }
+
+        val startParts = startDate.split("-").map { it.toInt() }
+        val endParts = endDate.split("-").map { it.toInt() }
+
+        val startCal = Calendar.getInstance().apply {
+            set(startParts[0], startParts[1] - 1, startParts[2], 0, 0, 0)
+        }
+        val endCal = Calendar.getInstance().apply {
+            set(endParts[0], endParts[1] - 1, endParts[2], 0, 0, 0)
+        }
+
+        while (!startCal.after(endCal)) {
+            val dateKey = DateUtils.formatDateKey(
+                startCal.get(Calendar.YEAR),
+                startCal.get(Calendar.MONTH),
+                startCal.get(Calendar.DAY_OF_MONTH)
+            )
+            val dow = DateUtils.getDayOfWeekForDate(
+                startCal.get(Calendar.YEAR),
+                startCal.get(Calendar.MONTH),
+                startCal.get(Calendar.DAY_OF_MONTH)
+            )
+
+            for (service in targetServices) {
+                if (service.isActiveOnDay(dow)) {
+                    val finalQty = if (status == "delivered") {
+                        if (qty > 0) qty else service.defaultQuantity
+                    } else 0.0
+
+                    saveDeliveryRecord(
+                        DeliveryRecord(
+                            id = UUID.randomUUID().toString(),
+                            serviceId = service.id,
+                            date = dateKey,
+                            status = status,
+                            quantity = finalQty
+                        )
+                    )
+                }
+            }
+            startCal.add(Calendar.DAY_OF_MONTH, 1)
+        }
+    }
+
+    // --- DATA BACKUP / EXPORT & RESTORE ---
+    data class BackupData(
+        val services: List<ServiceItem>,
+        val records: List<DeliveryRecord>,
+        val payments: List<PaymentRecord>,
+        val pauses: List<PauseRecord>
+    )
+
+    fun exportBackupJson(): String {
+        val allServices = getAllServices()
+        val allRecords = mutableListOf<DeliveryRecord>()
+        val db = dbHelper.readableDatabase
+        val cursor = db.query(DatabaseHelper.TABLE_DELIVERY_RECORDS, null, null, null, null, null, null)
+        cursor.use {
+            while (it.moveToNext()) {
+                allRecords.add(
+                    DeliveryRecord(
+                        id = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_RECORD_ID)),
+                        serviceId = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_RECORD_SERVICE_ID)),
+                        date = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_RECORD_DATE)),
+                        status = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_RECORD_STATUS)),
+                        quantity = it.getDouble(it.getColumnIndexOrThrow(DatabaseHelper.COL_RECORD_QUANTITY)),
+                        note = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_RECORD_NOTE)) ?: ""
+                    )
+                )
+            }
+        }
+        val allPayments = mutableListOf<PaymentRecord>()
+        val payCursor = db.query(DatabaseHelper.TABLE_PAYMENTS, null, null, null, null, null, null)
+        payCursor.use {
+            while (it.moveToNext()) {
+                allPayments.add(
+                    PaymentRecord(
+                        id = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAYMENT_ID)),
+                        period = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAYMENT_PERIOD)),
+                        amount = it.getDouble(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAYMENT_AMOUNT)),
+                        date = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAYMENT_DATE)),
+                        method = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAYMENT_METHOD)),
+                        note = it.getString(it.getColumnIndexOrThrow(DatabaseHelper.COL_PAYMENT_NOTE)) ?: ""
+                    )
+                )
+            }
+        }
+        val allPauses = getAllPauses()
+
+        val backup = BackupData(allServices, allRecords, allPayments, allPauses)
+        return gson.toJson(backup)
+    }
+
+    fun importBackupJson(jsonStr: String): Boolean {
+        return try {
+            val backup = gson.fromJson(jsonStr, BackupData::class.java) ?: return false
+            val db = dbHelper.writableDatabase
+            db.delete(DatabaseHelper.TABLE_DELIVERY_RECORDS, null, null)
+            db.delete(DatabaseHelper.TABLE_SERVICES, null, null)
+            db.delete(DatabaseHelper.TABLE_PAYMENTS, null, null)
+            db.delete(DatabaseHelper.TABLE_PAUSES, null, null)
+
+            backup.services.forEach { insertService(it) }
+            backup.records.forEach { saveDeliveryRecord(it) }
+            backup.payments.forEach { savePayment(it) }
+            backup.pauses.forEach { savePause(it) }
+            true
+        } catch (e: Exception) {
+            false
+        }
     }
 
     fun ensureDefaultDataSeeded() {
@@ -334,6 +595,8 @@ class Repository(private val dbHelper: DatabaseHelper) {
         val db = dbHelper.writableDatabase
         db.delete(DatabaseHelper.TABLE_DELIVERY_RECORDS, null, null)
         db.delete(DatabaseHelper.TABLE_SERVICES, null, null)
+        db.delete(DatabaseHelper.TABLE_PAYMENTS, null, null)
+        db.delete(DatabaseHelper.TABLE_PAUSES, null, null)
 
         val milk = ServiceItem(
             id = "service_milk_1",
@@ -380,20 +643,30 @@ class Repository(private val dbHelper: DatabaseHelper) {
             val dateKey = DateUtils.formatDateKey(year, month, day)
             val dow = DateUtils.getDayOfWeekForDate(year, month, day)
 
-            // Milk delivered every day (with 1 paused day for realism)
             if (day == 8) {
                 saveDeliveryRecord(DeliveryRecord(UUID.randomUUID().toString(), milk.id, dateKey, "paused", 0.0, "Out of station"))
             } else {
                 saveDeliveryRecord(DeliveryRecord(UUID.randomUUID().toString(), milk.id, dateKey, "delivered", 1.0))
             }
 
-            // Newspaper delivered every day
             saveDeliveryRecord(DeliveryRecord(UUID.randomUUID().toString(), newspaper.id, dateKey, "delivered", 1.0))
 
-            // Bread delivered on active days
             if (bread.isActiveOnDay(dow)) {
                 saveDeliveryRecord(DeliveryRecord(UUID.randomUUID().toString(), bread.id, dateKey, "delivered", 1.0))
             }
         }
+
+        // Seed a sample payment
+        val periodKey = String.format(java.util.Locale.US, "%04d-%02d", year, month + 1)
+        savePayment(
+            PaymentRecord(
+                id = UUID.randomUUID().toString(),
+                period = periodKey,
+                amount = 1000.0,
+                date = DateUtils.formatDateKey(year, month, 15),
+                method = "UPI",
+                note = "Advance via GPay"
+            )
+        )
     }
 }

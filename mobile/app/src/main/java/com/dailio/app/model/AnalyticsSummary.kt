@@ -15,9 +15,12 @@ data class AnalyticsSummary(
     val period: String,
     val totalSpent: Double,
     val projectedTotal: Double,
+    val totalPaid: Double,
+    val balanceDue: Double,
     val deliveryRatePercent: Int,
     val activeDaysCount: Int,
     val totalDaysInMonth: Int,
     val pausedDaysCount: Int,
-    val breakdownItems: List<ItemBreakdown>
+    val breakdownItems: List<ItemBreakdown>,
+    val payments: List<PaymentRecord>
 )
